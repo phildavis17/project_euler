@@ -1,8 +1,12 @@
 from __future__ import annotations
 from math import pi, sqrt
 
+# ---=== Constants ===---
 BIG_PHI = (1 + sqrt(5)) / 2
 LITTLE_PHI = (1 - sqrt(5)) / 2
+
+
+# ---=== Prime and Factor Stuff ===---
 
 def is_prime(n: int) -> bool:
     for f in range(2, int(sqrt(n)) + 1):
@@ -15,6 +19,8 @@ def get_primes(n: int) -> int:
     pass
 
 
+# ---=== Fibonacci Stuff ===---
+
 def nth_fibonacci(n: int, fibs: dict = None) -> int:
     if fibs is None:
         fibs = {0: 0, 1: 1}
@@ -22,9 +28,30 @@ def nth_fibonacci(n: int, fibs: dict = None) -> int:
         fibs[n] = nth_fibonacci(n-2, fibs) + nth_fibonacci(n-1, fibs)
     return fibs[n]
 
+def nth_fibonacci_dp(n: int) -> int:
+    """
+    Returns the nth fibonnaci number by calculating all fib numbers until it has the nth one.
+    Avoids recursion limit, but may run for a while!
+    """
+    if n == 0 or n == 0:
+        return n
+    count = 1
+    fib_a = 0
+    fib_b = 1
+    while count < n:
+        count += 1
+        fib_a, fib_b = fib_b, fib_a + fib_b
+    return fib_b
+
 def fast_fib(n: int) -> int:
+    """
+    Uses the closed form algorithm to calculate the nth fibonacci number
+    WARNING: this stops working somewhere between n=50 and n=100, due to rounding errors on irrational numbers.
+    """
     return int((BIG_PHI**n - LITTLE_PHI**2) / sqrt(5)) + 1
 
+
+# ---=== Grid Stuff ===---
 
 class Grid:
     """
