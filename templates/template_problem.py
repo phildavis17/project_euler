@@ -1,7 +1,6 @@
 # Project Euler
 # Problem 000
-# Philip Davie
-
+# Philip Davis
 
 import euler_utils as eu
 
