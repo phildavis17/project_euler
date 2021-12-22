@@ -19,6 +19,15 @@ def get_primes(n: int) -> int:
     pass
 
 
+def proper_divisors(n) -> list:
+    pd = [1]
+    for i in range(2, int(sqrt(n)) + 1):
+        if n % i == 0:
+            pd.append(i)
+            pd.append(n // i)
+    pd.sort()
+    return pd
+
 # ---=== Fibonacci Stuff ===---
 
 def nth_fibonacci(n: int, fibs: dict = None) -> int:
