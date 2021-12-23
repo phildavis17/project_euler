@@ -2,5 +2,8 @@
 # Problem 000
 # Philip Davis
 
-from .. import euler_utils as eu
+import sys
+sys.path.append("..")
+
+import euler_utils as eu
 

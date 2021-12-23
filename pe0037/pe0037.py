@@ -2,15 +2,39 @@
 # Problem 037 - Truncatable Primes
 # Philip Davis
 
-from itertools import permutations
+import sys
+sys.path.append("..")
 
-from .. import euler_utils as eu
-
-prime_digits = {3, 7, 9}
+import euler_utils as eu
 
 
-primes = []
-for n in eu.get_primes():
-    primes.append(n)
-    if len(primes) >= 11:
-        break
+
+
+def is_left_truncatable(n: int) -> bool:
+    n_string = str(n)
+    while n_string:
+        if not eu.is_prime(int(n_string)):
+            return False
+        n_string = n_string[1:]
+    return True
+
+def is_right_truncatable(n: int) -> bool:
+    n_string = str(n)
+    while n_string:
+        if not eu.is_prime(int(n_string)):
+            return False
+        n_string = n_string[:-1]
+    return True
+
+primes = eu.get_primes()
+
+t_primes = []
+
+while len(t_primes) < 11:
+    p = next(primes)
+    if len(str(p)) == 1:
+        continue
+    if is_left_truncatable(p) and is_right_truncatable(p):
+        t_primes.append(p)
+
+print(sum(t_primes))

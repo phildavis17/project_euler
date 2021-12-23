@@ -9,18 +9,21 @@ LITTLE_PHI = (1 - sqrt(5)) / 2
 # ---=== Prime and Factor Stuff ===---
 
 def is_prime(n: int) -> bool:
+    if n == 1:
+        return False
     for f in range(2, int(sqrt(n)) + 1):
         if n % f == 0:
             return False
     return True
 
 
-def get_primes(n: int) -> int:
+def get_primes() -> int:
     yield 2
     i = 3
-    if is_prime(i):
-        yield i
-    i += 2
+    while True:
+        if is_prime(i):
+            yield i
+        i += 2
 
 
 def proper_divisors(n) -> list:
