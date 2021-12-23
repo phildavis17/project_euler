@@ -16,7 +16,11 @@ def is_prime(n: int) -> bool:
 
 
 def get_primes(n: int) -> int:
-    pass
+    yield 2
+    i = 3
+    if is_prime(i):
+        yield i
+    i += 2
 
 
 def proper_divisors(n) -> list:
